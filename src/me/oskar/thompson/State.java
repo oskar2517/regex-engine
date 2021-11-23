@@ -29,15 +29,22 @@ public class State {
         terminalEdges.get(terminal).add(state);
     }
 
+    public boolean hasTerminalEdge(final String terminal) {
+        return terminalEdges.containsKey(terminal);
+    }
+
     public HashSet<State> epsilonSpan() {
         final var states = new HashSet<State>();
-        states.add(this);
         for (State s : epsilonEdges) {
-            // TODO: fix cycle properly
-            if (!s.epsilonEdges.contains(this)) {
+            // We don't want infinite recursion
+            if (s.epsilonEdges.contains(this)) {
+                states.add(s);
+                states.addAll(s.epsilonEdges);
+            } else {
                 states.addAll(s.epsilonSpan());
             }
         }
+        states.add(this);
 
         return states;
     }
