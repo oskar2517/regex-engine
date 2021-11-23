@@ -29,10 +29,6 @@ public class State {
         terminalEdges.get(terminal).add(state);
     }
 
-    public boolean hasTerminalEdge(final String terminal) {
-        return terminalEdges.containsKey(terminal);
-    }
-
     public HashSet<State> epsilonSpan() {
         final var states = new HashSet<State>();
         for (State s : epsilonEdges) {
