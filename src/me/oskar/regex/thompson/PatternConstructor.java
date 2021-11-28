@@ -1,50 +1,84 @@
-package me.oskar.thompson;
+package me.oskar.regex.thompson;
 
-import me.oskar.node.*;
-import me.oskar.parser.Pattern;
+import me.oskar.regex.node.*;
+import me.oskar.regex.parser.Pattern;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class PatternConstructor {
 
     private final Pattern pattern;
     private final State startState = new State();
+    private State endState;
 
     public PatternConstructor(final Pattern pattern) {
         this.pattern = pattern;
     }
 
     public void constructNonDeterministic() {
-        var endState = construct(pattern.getAst(), startState);
+        endState = construct(pattern.getAst(), startState);
         endState.setEndState(true);
     }
 
-    public void transformDeterministic() {
+    public State transformDeterministic() {
         final var epsilonSpans = new ArrayList<HashSet<State>>();
         epsilonSpans.add(startState.epsilonSpan());
 
-        for (var i = 0; i < Math.pow(2, State.instanceCount); i++) {
+        final var deterministicStates = new HashMap<HashSet<State>, State>();
+        final var startState = new State();
+
+        for (var i = 0; i < epsilonSpans.size(); i++) {
             var current = epsilonSpans.get(i);
 
-            for (String terminal : pattern.getTerminals()) {
+            if (!deterministicStates.containsKey(current)) {
+                State s;
+                if (deterministicStates.isEmpty()) {
+                    s = startState;
+                } else {
+                    s = new State();
+                }
+
+                if (current.contains(endState)) {
+                    s.setEndState(true);
+                }
+
+                deterministicStates.put(current, s);
+            }
+
+            for (final var terminal : pattern.getTerminals()) {
                 final var moveStates = new HashSet<State>();
-                for (State s : current) {
+                for (final var s : current) {
                     moveStates.addAll(s.move(terminal));
                 }
 
                 final var epsilonMoveStates = new HashSet<State>();
-                for (State s : moveStates) {
+                for (final var s : moveStates) {
                     epsilonMoveStates.addAll(s.epsilonSpan());
                 }
 
-                epsilonSpans.add(epsilonMoveStates);
+                if (!epsilonSpans.contains(epsilonMoveStates)) {
+                    epsilonSpans.add(epsilonMoveStates);
+                }
 
-                if (!current.isEmpty()) {
-                    System.out.printf("%s -> %s (%s)\n", current, epsilonMoveStates, terminal);
+                if (!deterministicStates.containsKey(epsilonMoveStates)) {
+                    final var s = new State();
+                    if (epsilonMoveStates.contains(endState)) {
+                        s.setEndState(true);
+                    }
+                    deterministicStates.put(epsilonMoveStates, s);
+                }
+
+                if (!epsilonMoveStates.isEmpty()) {
+                    final var originState = deterministicStates.get(current);
+                    final var targetState = deterministicStates.get(epsilonMoveStates);
+                    originState.addTerminalEdge(terminal, targetState);
                 }
             }
         }
+
+        return startState;
     }
 
     private State construct(final LiteralNode node, final State targetState) {

@@ -1,15 +1,15 @@
-package me.oskar.parser;
+package me.oskar.regex.parser;
 
-import me.oskar.node.Node;
+import me.oskar.regex.node.Node;
 
 import java.util.HashSet;
 
 public class Pattern {
 
     private final Node ast;
-    private final HashSet<String> terminals;
+    private final HashSet<Character> terminals;
 
-    public Pattern(final Node ast, final HashSet<String> terminals) {
+    public Pattern(final Node ast, final HashSet<Character> terminals) {
         this.ast = ast;
         this.terminals = terminals;
     }
@@ -18,7 +18,7 @@ public class Pattern {
         return ast;
     }
 
-    public HashSet<String> getTerminals() {
+    public HashSet<Character> getTerminals() {
         return terminals;
     }
 }

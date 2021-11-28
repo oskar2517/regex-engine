@@ -1,10 +1,10 @@
-package me.oskar.node;
+package me.oskar.regex.node;
 
-public class RepeatNode extends Node {
+public class GroupNode extends Node {
 
     private final Node value;
 
-    public RepeatNode(final Node value) {
+    public GroupNode(final Node value) {
         this.value = value;
     }
 
@@ -14,6 +14,6 @@ public class RepeatNode extends Node {
 
     @Override
     public String toString() {
-        return String.format("(REP %s)", value.toString());
+        return String.format("(GROUP %s)", value);
     }
 }

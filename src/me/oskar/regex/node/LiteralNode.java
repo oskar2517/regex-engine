@@ -1,14 +1,14 @@
-package me.oskar.node;
+package me.oskar.regex.node;
 
 public class LiteralNode extends Node {
 
-    private final String value;
+    private final char value;
 
-    public LiteralNode(final String value) {
+    public LiteralNode(final char value) {
         this.value = value;
     }
 
-    public String getValue() {
+    public char getValue() {
         return value;
     }
 

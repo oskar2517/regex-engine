@@ -1,4 +1,4 @@
-package me.oskar.node;
+package me.oskar.regex.node;
 
 public class OptionalNode extends Node {
 

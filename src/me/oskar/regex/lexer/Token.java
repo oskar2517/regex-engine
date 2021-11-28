@@ -1,4 +1,4 @@
-package me.oskar.lexer;
+package me.oskar.regex.lexer;
 
 public class Token {
 

@@ -1,4 +1,4 @@
-package me.oskar.thompson;
+package me.oskar.regex.thompson;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -12,7 +12,7 @@ public class State {
     private boolean visited = false;
 
     private final HashSet<State> epsilonEdges = new HashSet<>();
-    private final Map<String, HashSet<State>> terminalEdges = new HashMap<>();
+    private final Map<Character, HashSet<State>> terminalEdges = new HashMap<>();
 
     public State() {
         id = instanceCount++;
@@ -22,7 +22,7 @@ public class State {
         epsilonEdges.add(state);
     }
 
-    public void addTerminalEdge(final String terminal, final State state) {
+    public void addTerminalEdge(final char terminal, final State state) {
         if (!terminalEdges.containsKey(terminal)) {
             terminalEdges.put(terminal, new HashSet<>());
         }
@@ -46,7 +46,7 @@ public class State {
         return states;
     }
 
-    public HashSet<State> move(final String terminal) {
+    public HashSet<State> move(final char terminal) {
         final var states = new HashSet<State>();
 
         if (!terminalEdges.containsKey(terminal)) {
@@ -56,6 +56,28 @@ public class State {
         states.addAll(terminalEdges.get(terminal));
 
         return states;
+    }
+
+    public State step(final char terminal) {
+        if (terminalEdges.containsKey(terminal)) {
+            return terminalEdges.get(terminal).iterator().next();
+        } else {
+            throw new IllegalStateException("Invalid terminal");
+        }
+    }
+
+    public boolean test(final String input) {
+        var currentState = this;
+
+        try {
+            for (final var c : input.toCharArray()) {
+                currentState = currentState.step(c);
+            }
+        } catch (IllegalStateException e) {
+            return false;
+        }
+
+        return currentState.isEndState();
     }
 
     public boolean isEndState() {

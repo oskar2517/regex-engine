@@ -1,4 +1,4 @@
-package me.oskar.node;
+package me.oskar.regex.node;
 
 abstract public class Node {
 }

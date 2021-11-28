@@ -1,9 +1,9 @@
-package me.oskar.parser;
+package me.oskar.regex.parser;
 
-import me.oskar.lexer.Lexer;
-import me.oskar.lexer.Token;
-import me.oskar.lexer.TokenType;
-import me.oskar.node.*;
+import me.oskar.regex.lexer.Lexer;
+import me.oskar.regex.lexer.Token;
+import me.oskar.regex.lexer.TokenType;
+import me.oskar.regex.node.*;
 
 import java.util.HashSet;
 
@@ -11,7 +11,7 @@ public class Parser {
 
     private final Lexer lexer;
     private Token currentToken;
-    private final HashSet<String> seenTerminals = new HashSet<>();
+    private final HashSet<Character> seenTerminals = new HashSet<>();
 
     public Parser(final Lexer lexer) {
         this.lexer = lexer;
@@ -74,7 +74,7 @@ public class Parser {
     private Node parseFactor() {
         switch (currentToken.getType()) {
             case LITERAL -> {
-                final var terminal = currentToken.getLiteral();
+                final var terminal = currentToken.getLiteral().charAt(0);
                 seenTerminals.add(terminal);
                 final var node = new LiteralNode(terminal);
                 nextToken();
