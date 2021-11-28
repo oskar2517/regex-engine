@@ -1,10 +1,10 @@
 package me.oskar.regex.node;
 
-public class RepeatNode extends Node {
+public class RepeatPlusNode extends Node {
 
     private final Node value;
 
-    public RepeatNode(final Node value) {
+    public RepeatPlusNode(final Node value) {
         this.value = value;
     }
 

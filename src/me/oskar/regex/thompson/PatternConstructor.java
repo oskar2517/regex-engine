@@ -108,7 +108,7 @@ public class PatternConstructor {
         return s4;
     }
 
-    private State construct(final RepeatNode node, final State targetState) {
+    private State construct(final RepeatAsteriskNode node, final State targetState) {
         final var s1 = new State();
         final var s2 = new State();
         final var s3 = construct(node.getValue(), s2);
@@ -117,6 +117,23 @@ public class PatternConstructor {
 
         s1.addEpsilonEdge(s2);
         s2.addEpsilonEdge(s4);
+        s4.addEpsilonEdge(s2);
+        s3.addEpsilonEdge(s4);
+        s4.addEpsilonEdge(s5);
+
+        targetState.addEpsilonEdge(s1);
+
+        return s5;
+    }
+
+    private State construct(final RepeatPlusNode node, final State targetState) {
+        final var s1 = new State();
+        final var s2 = new State();
+        final var s3 = construct(node.getValue(), s2);
+        final var s4 = new State();
+        final var s5 = new State();
+
+        s1.addEpsilonEdge(s2);
         s4.addEpsilonEdge(s2);
         s3.addEpsilonEdge(s4);
         s4.addEpsilonEdge(s5);
@@ -145,7 +162,9 @@ public class PatternConstructor {
             return construct(n, targetState);
         } else if (node instanceof GroupNode n) {
             return construct(n, targetState);
-        } else if (node instanceof RepeatNode n) {
+        } else if (node instanceof RepeatAsteriskNode n) {
+            return construct(n, targetState);
+        } else if (node instanceof RepeatPlusNode n) {
             return construct(n, targetState);
         } else if (node instanceof DisjunctionNode n) {
             return construct(n, targetState);

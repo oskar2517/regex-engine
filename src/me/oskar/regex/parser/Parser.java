@@ -60,11 +60,14 @@ public class Parser {
         var left = parseFactor();
 
         switch (currentToken.getType()) {
-            case ASTERISK, PLUS -> {
+            case ASTERISK -> {
                 nextToken();
-                return new RepeatNode(left);
+                return new RepeatAsteriskNode(left);
             }
-            // TODO: fix
+            case PLUS -> {
+                nextToken();
+                return new RepeatPlusNode(left);
+            }
             default -> {
                 return left;
             }
