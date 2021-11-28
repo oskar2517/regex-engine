@@ -19,3 +19,6 @@ Simple Regex engine written in Java.
 - `a(b|c)+de`
 - `ab?`
 - `a*b(cd)+`
+
+## Usage
+`java -jar regex-engine.jar <pattern> <input>`
