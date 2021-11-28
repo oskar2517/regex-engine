@@ -7,8 +7,9 @@ import java.util.Map;
 public class State {
 
     public static int instanceCount = 0;
-    private int id;
+    private final int id;
     private boolean endState = false;
+    private boolean visited = false;
 
     private final HashSet<State> epsilonEdges = new HashSet<>();
     private final Map<String, HashSet<State>> terminalEdges = new HashMap<>();
@@ -31,16 +32,16 @@ public class State {
 
     public HashSet<State> epsilonSpan() {
         final var states = new HashSet<State>();
-        for (State s : epsilonEdges) {
-            // We don't want infinite recursion
-            if (s.epsilonEdges.contains(this)) {
-                states.add(s);
-                states.addAll(s.epsilonEdges);
-            } else {
+
+        if (!visited) {
+            visited = true;
+            for (State s : epsilonEdges) {
                 states.addAll(s.epsilonSpan());
             }
+            states.add(this);
         }
-        states.add(this);
+
+        visited = false;
 
         return states;
     }

@@ -7,7 +7,7 @@ import me.oskar.thompson.PatternConstructor;
 public class Main {
 
     public static void main(String[] args) {
-        final var regex = "a*";
+        final var regex = "a(b|c)*";
 
         final var lexer = new Lexer(regex);
         final var parser = new Parser(lexer);
