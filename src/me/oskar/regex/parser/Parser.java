@@ -45,10 +45,10 @@ public class Parser {
     }
 
     private Node parseConjunction() {
-        var left = parseRepeat();
+        var left = parseOptional();
 
         while (currentToken.getType() == TokenType.LITERAL || currentToken.getType() == TokenType.LPAREN) {
-            final var right = parseRepeat();
+            final var right = parseOptional();
 
             left = new ConjunctionNode(left, right);
         }
@@ -56,8 +56,19 @@ public class Parser {
         return left;
     }
 
+    private Node parseOptional() {
+        final var left = parseRepeat();
+
+        if (currentToken.getType() == TokenType.QUESTION_MARK) {
+            nextToken();
+            return new OptionalNode(left);
+        } else {
+            return left;
+        }
+    }
+
     private Node parseRepeat() {
-        var left = parseFactor();
+        final var left = parseFactor();
 
         switch (currentToken.getType()) {
             case ASTERISK -> {
