@@ -1,4 +1,4 @@
-package me.oskar.regex;
+package me.oskar.regex.engine;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package me.oskar.regex.lexer;
+package me.oskar.regex.engine.lexer;
 
 public enum TokenType {
     LITERAL,

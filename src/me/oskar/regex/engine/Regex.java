@@ -1,9 +1,9 @@
-package me.oskar.regex;
+package me.oskar.regex.engine;
 
-import me.oskar.regex.lexer.Lexer;
-import me.oskar.regex.parser.Parser;
-import me.oskar.regex.thompson.PatternConstructor;
-import me.oskar.regex.thompson.State;
+import me.oskar.regex.engine.lexer.Lexer;
+import me.oskar.regex.engine.parser.Parser;
+import me.oskar.regex.engine.thompson.PatternConstructor;
+import me.oskar.regex.engine.thompson.State;
 
 public class Regex {
 

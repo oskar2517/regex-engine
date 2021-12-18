@@ -1,4 +1,4 @@
-package me.oskar.regex.node;
+package me.oskar.regex.engine.node;
 
 public class LiteralNode extends Node {
 

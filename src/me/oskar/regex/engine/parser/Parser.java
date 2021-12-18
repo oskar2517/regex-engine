@@ -1,9 +1,9 @@
-package me.oskar.regex.parser;
+package me.oskar.regex.engine.parser;
 
-import me.oskar.regex.lexer.Lexer;
-import me.oskar.regex.lexer.Token;
-import me.oskar.regex.lexer.TokenType;
-import me.oskar.regex.node.*;
+import me.oskar.regex.engine.lexer.Lexer;
+import me.oskar.regex.engine.lexer.Token;
+import me.oskar.regex.engine.lexer.TokenType;
+import me.oskar.regex.engine.node.*;
 
 import java.util.HashSet;
 

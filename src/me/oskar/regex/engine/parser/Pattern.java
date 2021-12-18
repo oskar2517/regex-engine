@@ -1,6 +1,6 @@
-package me.oskar.regex.parser;
+package me.oskar.regex.engine.parser;
 
-import me.oskar.regex.node.Node;
+import me.oskar.regex.engine.node.Node;
 
 import java.util.HashSet;
 

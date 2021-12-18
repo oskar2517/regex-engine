@@ -1,6 +1,6 @@
-package me.oskar;
+package me.oskar.regex;
 
-import me.oskar.regex.Regex;
+import me.oskar.regex.engine.Regex;
 
 public class Main {
 

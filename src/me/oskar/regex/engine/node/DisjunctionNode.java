@@ -1,11 +1,11 @@
-package me.oskar.regex.node;
+package me.oskar.regex.engine.node;
 
-public class ConjunctionNode extends Node {
+public class DisjunctionNode extends Node {
 
     private final Node left;
     private final Node right;
 
-    public ConjunctionNode(final Node left, final Node right) {
+    public DisjunctionNode(final Node left, final Node right) {
         this.left = left;
         this.right = right;
     }
@@ -20,6 +20,6 @@ public class ConjunctionNode extends Node {
 
     @Override
     public String toString() {
-        return String.format("(CON %s %s)", left, right);
+        return String.format("(DIS %s %s)", left, right);
     }
 }

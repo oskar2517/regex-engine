@@ -1,10 +1,10 @@
-package me.oskar.regex.node;
+package me.oskar.regex.engine.node;
 
-public class GroupNode extends Node {
+public class OptionalNode extends Node {
 
     private final Node value;
 
-    public GroupNode(final Node value) {
+    public OptionalNode(final Node value) {
         this.value = value;
     }
 
@@ -14,6 +14,6 @@ public class GroupNode extends Node {
 
     @Override
     public String toString() {
-        return String.format("(GROUP %s)", value);
+        return String.format("(OPT %s)", value);
     }
 }

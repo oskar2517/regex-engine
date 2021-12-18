@@ -1,10 +1,10 @@
-package me.oskar.regex.node;
+package me.oskar.regex.engine.node;
 
-public class RepeatAsteriskNode extends Node {
+public class RepeatPlusNode extends Node {
 
     private final Node value;
 
-    public RepeatAsteriskNode(final Node value) {
+    public RepeatPlusNode(final Node value) {
         this.value = value;
     }
 

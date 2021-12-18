@@ -1,7 +1,7 @@
-package me.oskar.regex.thompson;
+package me.oskar.regex.engine.thompson;
 
-import me.oskar.regex.node.*;
-import me.oskar.regex.parser.Pattern;
+import me.oskar.regex.engine.node.*;
+import me.oskar.regex.engine.parser.Pattern;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,12 +33,7 @@ public class PatternConstructor {
             var current = epsilonSpans.get(i);
 
             if (!deterministicStates.containsKey(current)) {
-                State s;
-                if (deterministicStates.isEmpty()) {
-                    s = startState;
-                } else {
-                    s = new State();
-                }
+                State s = deterministicStates.isEmpty() ? startState : new State();
 
                 if (current.contains(endState)) {
                     s.setEndState(true);

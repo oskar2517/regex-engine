@@ -1,4 +1,4 @@
-package me.oskar.regex.thompson;
+package me.oskar.regex.engine.thompson;
 
 import java.util.HashMap;
 import java.util.HashSet;

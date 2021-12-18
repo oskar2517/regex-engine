@@ -1,4 +1,4 @@
-package me.oskar.regex.lexer;
+package me.oskar.regex.engine.lexer;
 
 public class Lexer {
 
