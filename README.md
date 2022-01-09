@@ -20,6 +20,10 @@ Simple Regex engine written in Java.
 - `ab?`
 - `a*b(cd)+`
 
+## Usage
+`java -jar regex-engine.jar <pattern> <input>`
+
+
 ## GraphViz
 When executed directly through CLI, [Graphviz](https://graphviz.org/) DOT code will be emitted. 
 It can be used to visualize the automatons generated from the provided regex (for example using 
@@ -68,6 +72,3 @@ digraph dfa_regex {
 }
 ```
 ![NFA](assets/examples/dfa.svg)
-
-## Usage
-`java -jar regex-engine.jar <pattern> <input>`
