@@ -24,7 +24,7 @@ Simple Regex engine written in Java.
 `java -jar regex-engine.jar <pattern> <input>`
 
 
-## GraphViz
+## Graphviz
 When executed directly through CLI, [Graphviz](https://graphviz.org/) DOT code will be emitted. 
 It can be used to visualize the automatons generated from the provided regex (for example using 
 [this website](http://magjac.com/graphviz-visual-editor/)).
