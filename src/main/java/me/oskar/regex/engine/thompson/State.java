@@ -12,6 +12,15 @@ public class State {
     private boolean visited = false;
 
     private final HashSet<State> epsilonEdges = new HashSet<>();
+
+    public HashSet<State> getEpsilonEdges() {
+        return epsilonEdges;
+    }
+
+    public Map<Character, HashSet<State>> getTerminalEdges() {
+        return terminalEdges;
+    }
+
     private final Map<Character, HashSet<State>> terminalEdges = new HashMap<>();
 
     public State() {

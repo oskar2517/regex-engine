@@ -17,9 +17,11 @@ public class PatternConstructor {
         this.pattern = pattern;
     }
 
-    public void constructNonDeterministic() {
+    public State constructNonDeterministic() {
         endState = construct(pattern.getAst(), startState);
         endState.setEndState(true);
+
+        return startState;
     }
 
     public State transformDeterministic() {
