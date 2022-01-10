@@ -44,7 +44,7 @@ public class Graphviz {
         if (!visited) {
             for (final var entry : s.getTerminalEdges().entrySet()) {
                 for (final var cs : entry.getValue()) {
-                    out.append(String.format("  %s -> %s [label=%s]\r\n", s.getId(), cs.getId(), entry.getKey()));
+                    out.append(String.format("  %s -> %s [label=\"%s\"]\r\n", s.getId(), cs.getId(), entry.getKey()));
                     generate(cs, out);
                 }
             }
